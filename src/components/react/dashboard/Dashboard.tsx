@@ -2,9 +2,21 @@ import { useState } from "react"
 import Header from "../header/Header"
 import ClipCard from "./clips/ClipCard"
 import ClipItInput from "./ytb/ClipItInput"
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 
 export default function Dashboard({userDetail}: Record<string, any>) {
     const [oembed, setOembed] = useState<Record<string, any> | null>();
+
+    const subtitleStyle: Record<string, string|Record<string, string>>[] = [
+        {
+            label: "Alex Hormozi",
+            name: "alex_hormozi",
+            style: {
+
+            }
+        }
+    ]
+
 
     return ( 
         <div className="grid grid-cols-12 h-screen">
@@ -33,14 +45,31 @@ export default function Dashboard({userDetail}: Record<string, any>) {
                         </div>
 
 
-                        <div className="mt-[3em] md:mt-5 p-2 rounded-lg flex flex-col md:flex-row gap-4 justify-center">
-                            <div>
-                                <img className="md:h-44 md:w-56 rounded-lg" alt="thumbnail" src="https://i.ytimg.com/vi/LzKtLDRyzu8/hqdefault.jpg"/>
+                        <div className="mt-[3em] md:mt-5 p-2 rounded-lg flex flex-col md:flex-row gap-4 bg-gray-200 min-h-[30em] md:min-h-[15em]">
+                            <div className="flex justify-center">
+                                <img className="md:h-44 md:w-56 rounded-lg" alt="thumbnail" src="https://i.ytimg.com/vi/LzKtLDRyzu8/hqdefault.jXXpg"/>
                             </div>
-                            <div className="grid grid-cols-4 gap-4">
-                                <div>01</div>
-                                <div>09</div>
+                            <div className="flex-1">
+                                <TabGroup>
+                                    <TabList className="flex justify-around bg-red-900">
+                                        <Tab>Tab 1</Tab>
+                                        <Tab>Tab 2</Tab>
+                                        <Tab>Tab 3</Tab>
+                                    </TabList>
+                                    <TabPanels className="bg-green-300 p-2">
+                                        <TabPanel>Content 1</TabPanel>
+                                        <TabPanel>Content 2</TabPanel>
+                                        <TabPanel>Content 3</TabPanel>
+                                    </TabPanels>
+                                </TabGroup>
                             </div>
+                            {/* <div className="grid grid-cols-4 gap-4">
+                                {
+                                    subtitleStyle.map( (subtitleStyleName, index) => {
+                                        return <p>{subtitleStyleName.label as string}</p>
+                                    })
+                                }
+                            </div>   */}
                         </div>
 
                         {/* {
