@@ -38,7 +38,7 @@ export default function ClipItInput({
                                    focus:outline-none focus:ring-2 
                                    focus:ring-blue-300 transition 
                                    duration-300 ease-in-out">
-                    Clip It
+                    Upload
                 </Button> 
             </div>
 
