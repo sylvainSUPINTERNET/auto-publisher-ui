@@ -102,10 +102,8 @@ export default function Dashboard({userDetail}: Record<string, any>) {
                                     <div className="items-center flex justify-center">
                                         <Button 
                                                 onClick={ async () => {
-                                                    if ( selectedSubtitle === -1 ) {
-                                                        alert("Please select a subtitle style before generating clips.")
-                                                    } else {
-                                                        alert("START JOB");
+                                                    if ( selectedSubtitle !== -1 ) {
+                                                        alert("GO.")
                                                     }
                                                 }}
                                                 className="px-4 
