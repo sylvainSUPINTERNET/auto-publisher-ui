@@ -9,19 +9,22 @@ export default function Dashboard({userDetail}: Record<string, any>) {
 
     const [oembed, setOembed] = useState<Record<string, any> | null>();
     const [selectedSubtitle, setSelectedSubtitle] = useState< number>(-1)
-    const subtitleStyle: Record<string, string|Record<string, string>|ReactElement<any, any>|number>[] = [
+    const subtitleStyle: Record<string, string|Record<string, string>|ReactElement<any, any>|number|any>[] = [
         {
             id: 1,
             label: "Alex Hormozi",
             name: "alex_hormozi",
-            dom:<div 
-                className={`cursor-pointer text-center uppercase font-extrabold text-sm tracking-tight text-white bg-black px-2 py-1 rounded
-                    transition transform duration-200 ease-in-out  
-                    ${selectedSubtitle === 1 ? "border-4 border-green-400 shadow-lg" : "border-4 border-white"}
-                `} 
-                onClick={ _e  => { selectedSubtitle === 1 ? setSelectedSubtitle(-1) : setSelectedSubtitle(1)} }>
-                Alex Hormozi
-            </div>
+            getDom: (keyId:string) => {
+                return <div 
+                    key={keyId}
+                    className={`cursor-pointer text-center uppercase font-extrabold text-sm tracking-tight text-white bg-black px-2 py-1 rounded
+                        transition transform duration-200 ease-in-out  
+                        ${selectedSubtitle === 1 ? "border-4 border-green-400 shadow-lg" : "border-4 border-white"}
+                    `} 
+                    onClick={ _e  => { selectedSubtitle === 1 ? setSelectedSubtitle(-1) : setSelectedSubtitle(1)} }>
+                    Alex Hormozi
+                </div>
+            }
         }
     ]
 
@@ -55,9 +58,9 @@ export default function Dashboard({userDetail}: Record<string, any>) {
 
                         <div className="mt-[3em] md:mt-5 p-2 rounded-lg flex flex-col md:flex-row gap-4 min-h-[30em] md:min-h-[15em]">
                             <div className="flex justify-center">
-                                <img className="md:h-44 md:w-56 rounded-lg" alt="thumbnail" src="https://i.ytimg.com/vi/LzKtLDRyzu8/hqdefault.jpg"/>
+                                <img className="md:h-64 rounded-lg" alt="thumbnail" src="https://i.ytimg.com/vi/LzKtLDRyzu8/hqdefault.jpg"/>
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 h-12">
                                 <TabGroup>
                                     <TabList className="flex justify-around bg-youtube p-2 rounded-t-lg shadow-sm">
                                         <Tab className="flex gap-1 items-center rounded-full py-1 px-3 text-sm/6 font-semibold text-white focus:outline-none data-[selected]:bg-black/10 data-[hover]:bg-gray/5 data-[selected]:data-[hover]:bg-gray/10 data-[focus]:outline-1 data-[focus]:outline-white">
@@ -71,12 +74,12 @@ export default function Dashboard({userDetail}: Record<string, any>) {
                                             Tab 3
                                         </Tab> */}
                                     </TabList>
-                                    <TabPanels className="border-2 p-2 rounded-b-lg min-h-[10em] md:min-h-[15em]">
+                                    <TabPanels className="border-2 p-2 rounded-b-lg min-h-[13em]">
                                         <TabPanel>
-                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
                                                 {
                                                     subtitleStyle.map( (subtitle, index) => {
-                                                        return subtitle.dom as ReactElement<any, any>
+                                                        return subtitle.getDom(index)
                                                     })
                                                 }
                                             </div>  
